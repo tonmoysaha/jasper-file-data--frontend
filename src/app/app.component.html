@@ -1,0 +1,96 @@
+<div class="card">
+  <div class="card-body">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Apex Group</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+        <form class="form-inline my-2 my-lg-0">
+          <div class="input-group">
+            <div class="custom-file">
+              <input  type="file" class="custom-file-input" id="inputGroupFile"
+                     (change)="onFileSelected($event.target)" accept=".xlsx, .xls">
+              <label class="custom-file-label" for="inputGroupFile">Choose file</label>
+            </div>
+            <div class="input-group-append ml-3">
+              <button mat-raised-button color="primary" (click)="upload($event)" id="inputGroupFileAddon">Upload
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </nav>
+    <div class="border-bottom  border-dark mt-6 pt-3">
+      <p class="font-weight-bold fs-2">Excel Data</p>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <button class="text-start mt-2" mat-raised-button color="primary" (click)="downloadFile()">Download</button>
+      </div>
+      <div class="col-6 text-right">
+        <mat-form-field class="w-75">
+          <input matInput (keyup)="applyFilter($event)" placeholder="Search">
+        </mat-form-field>
+      </div>
+    </div>
+
+
+    <div class="mat-elevation-z0">
+      <table mat-table [dataSource]="dataSource">
+        <ng-container matColumnDef="id">
+          <th mat-header-cell class="column-width" *matHeaderCellDef> No.</th>
+          <td mat-cell *matCellDef="let element" class="column-width"> {{ element.id }}</td>
+          <!-- Adjust column width here -->
+        </ng-container>
+
+        <ng-container matColumnDef="trnumber">
+          <th mat-header-cell class="column-width" *matHeaderCellDef>Trnumber</th>
+          <td mat-cell *matCellDef="let element" class="column-width"> {{ element.trnumber }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="knitCardNumber">
+          <th mat-header-cell class="column-width" *matHeaderCellDef> Knit CardNumber</th>
+          <td mat-cell *matCellDef="let element" class="column-width"> {{ element.knitCardNumber }}</td>
+          <!-- Adjust column width here -->
+        </ng-container>
+
+        <ng-container matColumnDef="requisitionQuantity">
+          <th mat-header-cell class="column-width" *matHeaderCellDef> Requisition Quantity</th>
+          <td mat-cell *matCellDef="let element" class="column-width"> {{ element.requisitionQuantity }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="knitCardQuantity">
+          <th mat-header-cell class="column-width" *matHeaderCellDef> Knit Card Quantity</th>
+          <td mat-cell *matCellDef="let element" class="column-width"> {{ element.knitCardQuantity }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="knitCardBalance">
+          <th mat-header-cell class="column-width" *matHeaderCellDef>Knit Card Balance</th>
+          <td mat-cell *matCellDef="let element" class="column-width"> {{ element.knitCardBalance }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <tr *matNoDataRow>
+          <td class="mat-cell-no-data" colspan="12">
+            <div>
+              <img class="image-no-data" src="assets/svg/no data found.svg">
+              <p class="mat-cell-no-data-text">No Data found</p>
+            </div>
+            <div>
+            </div>
+          </td>
+        </tr>
+      </table>
+      <mat-paginator [length]="dataSource.data.length"
+                     [pageSizeOptions]="[10, 20, 40]"
+                     showFirstLastButtons>
+      </mat-paginator>
+
+    </div>
+  </div>
+</div>
+

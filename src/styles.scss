@@ -1,0 +1,21 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/*no data css*/
+.mat-cell-no-data {
+  text-align: center;
+}
+
+.image-no-data {
+  width: 700px;
+  height: 200px;
+}
+
+.mat-cell-no-data-text {
+  text-align: center;
+  font-family: "Times New Roman";
+  font-size: 30px;
+  color: #fec107;
+  text-transform: capitalize;
+}
